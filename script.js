@@ -1,21 +1,25 @@
-function verificaPassaggio() {
-    // Ottieni i valori inseriti dall'utente
-    const passo = parseFloat(document.getElementById('passo').value) || 0;
-    const altezzaVeicolo = parseFloat(document.getElementById('altezzaVeicolo').value) || 0;
-    const angoloRampa = parseFloat(document.getElementById('angoloRampa').value) || 10;
-    const altezzaSoffitto = parseFloat(document.getElementById('altezzaSoffitto').value) || 380;
+# Funzione per calcolare se il veicolo entra nel garage
+def verifica_accesso_garage():
+    try:
+        # Input delle variabili
+        passo = float(input("Inserisci la lunghezza del passo del veicolo in cm: "))
+        altezza_veicolo = float(input("Inserisci l'altezza del veicolo in cm: "))
+        altezza_garage = float(input("Inserisci l'altezza del garage in cm: "))
+        pendenza_rampa = float(input("Inserisci la pendenza della rampa in percentuale (%): "))
 
-    // Conversione dell'angolo della rampa in radianti
-    const pendenzaRadianti = angoloRampa * Math.PI / 180;
+        # Conversione della pendenza in angolo in gradi
+        angolo_rampa = (pendenza_rampa / 100.0)
+        
+        # Calcolo dell'altezza massima raggiunta dal veicolo sulla rampa
+        altezza_massima_veicolo = altezza_veicolo + (passo * angolo_rampa)
 
-    // Calcolo dell'altezza della parte anteriore del veicolo al punto di transizione
-    const altezzaFronte = altezzaVeicolo + (passo * Math.sin(pendenzaRadianti));
+        # Verifica se l'altezza massima del veicolo è inferiore all'altezza del garage
+        if altezza_massima_veicolo < altezza_garage:
+            print("Il veicolo può entrare nel garage senza problemi!")
+        else:
+            print("Attenzione! Il veicolo potrebbe urtare il soffitto del garage.")
+    except ValueError:
+        print("Errore: Inserisci valori numerici validi per tutte le misure.")
 
-    // Verifica se l'altezza del veicolo al punto di transizione è minore o uguale all'altezza del soffitto
-    const risultato = altezzaFronte <= altezzaSoffitto
-        ? "L'auto passa nel garage."
-        : "L'auto NON passa nel garage.";
-
-    // Visualizza il risultato
-    document.getElementById('risultato').textContent = risultato;
-}
+# Esecuzione della funzione
+verifica_accesso_garage()
