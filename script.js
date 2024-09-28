@@ -8,11 +8,11 @@ function verificaPassaggio() {
     // Conversione dell'angolo della rampa in radianti
     const pendenzaRadianti = angoloRampa * Math.PI / 180;
 
-    // Calcolo dell'altezza massima del veicolo rispetto al soffitto al punto di transizione
-    const altezzaMassima = altezzaVeicolo + passo * Math.sin(pendenzaRadianti);
+    // Calcolo dell'altezza della parte anteriore del veicolo al punto di transizione
+    const altezzaFronte = altezzaVeicolo + (passo * Math.sin(pendenzaRadianti));
 
     // Verifica se l'altezza del veicolo al punto di transizione è minore o uguale all'altezza del soffitto
-    const risultato = altezzaMassima <= altezzaSoffitto
+    const risultato = altezzaFronte <= altezzaSoffitto
         ? "L'auto passa nel garage."
         : "L'auto NON passa nel garage.";
 
